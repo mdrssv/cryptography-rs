@@ -637,7 +637,7 @@ impl From<KeyAlgorithm> for Oid {
         Oid(match alg {
             KeyAlgorithm::Rsa => OID_RSA.as_ref(),
             KeyAlgorithm::Ecdsa(_) => OID_EC_PUBLIC_KEY.as_ref(),
-            KeyAlgorithm::Ed25519 => OID_ED25519_KEY_AGREEMENT.as_ref(),
+            KeyAlgorithm::Ed25519 => OID_ED25519_SIGNATURE_ALGORITHM.as_ref(),
         }
         .into())
     }
@@ -648,7 +648,7 @@ impl From<KeyAlgorithm> for ObjectIdentifier {
         let bytes = match alg {
             KeyAlgorithm::Rsa => OID_RSA.as_ref(),
             KeyAlgorithm::Ecdsa(_) => OID_EC_PUBLIC_KEY.as_ref(),
-            KeyAlgorithm::Ed25519 => OID_ED25519_KEY_AGREEMENT.as_ref(),
+            KeyAlgorithm::Ed25519 => OID_ED25519_SIGNATURE_ALGORITHM.as_ref(),
         };
 
         ObjectIdentifier::from_bytes(bytes).expect("OID bytes should be valid")
