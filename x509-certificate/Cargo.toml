@@ -13,6 +13,7 @@ readme = "README.md"
 
 [features]
 test = []
+omit-empty-parameters = []
 
 [dependencies]
 bcder = "0.7.4"

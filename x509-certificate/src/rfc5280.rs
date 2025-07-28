@@ -80,7 +80,11 @@ impl AlgorithmIdentifier {
             AlgorithmParameter(Captured::from_values(mode, ().encode_as(Tag::NULL)))
         };
 
-        encode::sequence((self.algorithm.clone().encode(), captured))
+        if cfg!(feature = "omit-empty-parameters") && self.parameters.is_none() {
+            encode::sequence((self.algorithm.clone().encode(), None))
+        } else {
+            encode::sequence((self.algorithm.clone().encode(), Some(captured)))
+        }
     }
 }
 
